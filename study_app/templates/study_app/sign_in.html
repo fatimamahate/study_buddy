@@ -5,21 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Assignment</title>
+    <title>Sign In!</title>
 </head>
 
 <body>
-    
-    <h1>Edit an Assignment</h1>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <div>
-            <p>
-                <button type="submit">Finished Editing</button>
-            </p>
-        </div>
+        <button type="submit">Sign In</button>
     </form>
-    
+
 </body>
+
 </html>

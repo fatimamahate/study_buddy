@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Assignment
 from .forms import AssignmentForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -74,3 +74,25 @@ def new_user(request):
         'form': form
     }
     return render(request, 'study_app/sign_up.html', context)
+
+
+def current_user(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username='username', password='password')
+            # if user is not None:
+            #     login(request, user)
+            #     return redirect(request, 'dashboard')
+            # else:
+            #     messages.error(request, "Invalid information, try again")
+            return render(request, 'study_app/dashboard.html')
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'study_app/sign_in.html', context)

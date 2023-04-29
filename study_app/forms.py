@@ -9,7 +9,7 @@ class AssignmentForm(forms.ModelForm):
         model = Assignment
         fields = ['title', 'tutor', 'tutee', 'content']
 
-# class NewUser(UserCreationForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'password1', 'password2']
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']

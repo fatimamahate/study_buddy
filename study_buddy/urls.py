@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from study_app.views import dashboard, edit_assignment, add_assignment, delete_assignment, new_user
+from study_app.views import dashboard, edit_assignment, add_assignment, delete_assignment, new_user, current_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +23,6 @@ urlpatterns = [
     path('assignment_add', add_assignment, name='add'),
     path('assignment_edit/<assignment_id>', edit_assignment, name='edit'),
     path('assignment_delete/<assignment_id>', delete_assignment, name='delete'),
-    path('', new_user, name='register')
+    path('sign_up', new_user, name='register'),
+    path('', current_user, name='login')
 ]
