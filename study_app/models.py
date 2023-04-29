@@ -12,5 +12,6 @@ class Assignment(models.Model):
         User, on_delete=models.CASCADE, related_name='assignments_todo')
     content = models.TextField()
 
-    def __str__(self):
-        return self.title
+def __str__(self):
+    return self.title
+    

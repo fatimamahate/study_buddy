@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from study_app.views import dashboard, edit_assignment, add_assignment
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', dashboard, name='dashboard'),
+    path('assignment_add', add_assignment, name='add'),
+    path('assignment_edit/<assignment_id>', edit_assignment, name='edit'),
 ]
