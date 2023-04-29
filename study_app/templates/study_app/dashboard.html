@@ -9,28 +9,40 @@
 </head>
 
 <body>
-    <h1>Assigned</h1>
+    <h1>I have assigned</h1>
     <a href="/assignment_add">Add an assignment</a>
+    <table>
+        {% for assignment in assignments %}
+            
+                <tr>
+                    <td>{{ assignment.title }}</td>
+                    <td>{{ assignment.tutee }}</td>
+                    <td>{{ assignment.content }}</td>
+                    <td>
+                        <a href="/assignment_edit/{{ assignment.id }}">
+                            <button>Edit Assignment</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/assignment_delete/{{ assignment.id }}">
+                            <button>Remove Assignment</button>
+                        </a>
+                    </td>
+                </tr>
+ 
+        {% endfor %}
+    </table>
+    <h1>Assigned To Me</h1>
     <table>
         {% for assignment in assignments %}
         <tr>
             <td>{{ assignment.title }}</td>
             <td>{{ assignment.tutor }}</td>
-            <td>{{ assignment.tutee }}</td>
             <td>{{ assignment.content }}</td>
-            <td>
-                <a href="/assignment_edit/{{ assignment.id }}">
-                    <button>Edit Assignment</button>
-                </a>
-            </td>
-            <td>
-                <a href="/assignment_remove/{{ assignment.id }}">
-                    <button>Remove Assignment</button>
-                </a>
-            </td>
         </tr>
         {% endfor %}
     </table>
+    
 
 </body>
 
