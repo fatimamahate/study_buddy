@@ -11,9 +11,10 @@ from django.contrib import messages
 
 
 @login_required
-def dashboard(request):
+def dashboard(request, user_id):
     assignments = Assignment.objects.all()
-
+    user = assignments.objects.filter(id= user_id)
+    if user == 
     context = {
         'assignments': assignments
     }
@@ -26,13 +27,9 @@ def add_assignment(request):
     form = AssignmentForm()
 
     if request.method == 'POST':
-        # form contains fields for everything except tutor
         form = AssignmentForm(request.POST)
         if form.is_valid():
             assignment = form.save(commit=False)
-            # This field was omitted from the form for data integrity reasons.
-            # We want to guarantee that the person who's logged in when creating
-            # the form is identified as the assigment's creator (tutor).
             assignment.tutor = request.user
             assignment.save()
             return redirect('dashboard')
@@ -60,8 +57,6 @@ def edit_assignment(request, assignment_id):
 @login_required
 def delete_assignment(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
-    if request.user != assignment.tutor:
-        return redirect('dashboard')
     assignment.delete()
     return redirect('dashboard')
 
