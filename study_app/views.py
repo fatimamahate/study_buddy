@@ -22,16 +22,22 @@ def dashboard(request):
 
 @login_required
 def add_assignment(request):
+    # Empty form for the GET request.
+    form = AssignmentForm()
+
     if request.method == 'POST':
+        # form contains fields for everything except tutor
         form = AssignmentForm(request.POST)
         if form.is_valid():
-            form.save()
+            assignment = form.save(commit=False)
+            # This field was omitted from the form for data integrity reasons.
+            # We want to guarantee that the person who's logged in when creating
+            # the form is identified as the assigment's creator (tutor).
+            assignment.tutor = request.user
+            assignment.save()
             return redirect('dashboard')
-    form = AssignmentForm()
-    context = {
-        'form': form
-    }
-    return render(request, 'study_app/add_assignment.html', context)
+
+    return render(request, 'study_app/add_assignment.html', {'form': form})
 
 
 @login_required
@@ -83,11 +89,6 @@ def current_user(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username='username', password='password')
-            # if user is not None:
-            #     login(request, user)
-            #     return redirect(request, 'dashboard')
-            # else:
-            #     messages.error(request, "Invalid information, try again")
             return render(request, 'study_app/dashboard.html')
         else:
             messages.error(request, "Invalid username or password.")
