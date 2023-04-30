@@ -9,12 +9,10 @@ from django.contrib import messages
 
 # Create your views here.
 
-
 @login_required
 def dashboard(request, user_id):
     assignments = Assignment.objects.all()
     user = assignments.objects.filter(id= user_id)
-    if user == 
     context = {
         'assignments': assignments
     }
