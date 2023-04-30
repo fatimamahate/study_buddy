@@ -36,6 +36,7 @@ These are the user stories for this project:
 * is the assignment updated in the relevant field. 
 * can user delete assignment if it is no longer needed. 
 ### HTML
+
 ### CSS
 ### JavaScript
 ### PEP8
@@ -45,9 +46,9 @@ These are the user stories for this project:
 * [Code Institute](https://codeinstitute.net/) Specifically during the Principles of Agile Methodology where the idea for this project came to life. 
 * [Django Docs](https://docs.djangoproject.com/en/4.2/) Important for undertanding how to use Django
 * [Stack Overflow](https://stackoverflow.com/questions/9269945/how-do-i-pass-the-current-user-id-as-a-hidden-field-in-a-django-form) The answer to this question was really helpful for my add assignment view. 
-* []() This is also a common code template however, this broke it down in a way that I could follow. 
+* [A Guide to User Registration, Login, and Logout in Django by Jaysha](https://ordinarycoders.com/blog/article/django-user-register-login-logout) This is also a common code template however, this broke it down in a way that I could follow.
 * [Bootstrap]() Used for styling
-* [Heroku]()Used to deploy project. 
+* [Heroku](http://www.heroku.com/)Used to deploy project.
 
 ## Acknowledgements
 Thank you to my mentor Brian Macharia for the invaluable advice given for this project.
