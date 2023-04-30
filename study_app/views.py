@@ -9,6 +9,7 @@ from django.contrib import messages
 
 # Create your views here.
 
+
 @login_required
 def dashboard(request, user_id):
     assignments = Assignment.objects.all()
