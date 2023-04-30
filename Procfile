@@ -1,1 +1,1 @@
-web: gunicorn study_app.wsgi
+web: gunicorn study_buddy.wsgi
